@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home</title>
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="static/fonts/material-icon/css/material-design-iconic-font.min.css">
+    <!-- Main css -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+    <div class="main">
+
+        <!-- Sign up form -->
+        <section class="signup">
+
+            <div class="container">
+                <br>
+                <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#numone">Upload Data</button>
+                <br><br>
+                <a class="btn btn-primary" href="/logout">Logout</a><br><br>
+                <br>
+                <div id="numone" class="collapse">
+                    <form method="POST" action="/" enctype="multipart/form-data">
+                          <p><input type="file" name="file"></p>
+                          <p><input type="submit" value="Submit"></p>
+                       <h3>Starting Balance : {{account_balance}}</h3>
+                       <h3>Current Balance : {{get_account_data}} </h3>
+                                  <table class="table" style="width:77%;">
+                                    <thead>
+                                      <tr>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                     {% for i in getcsv_data %}
+                                      <tr>
+                                        <td>{{i.typeofbalance}}</td>
+                                        <td>{{i.balance}}</td>
+                                      </tr>
+                                     {% endfor %}
+                                    </tbody>
+                                  </table>
+
+                        </form>
+                </div>
+
+            </div>
+        </section>
+
+
+    </div>
+
+    <!-- JS -->
+    <script src="static/vendor/jquery/jquery.min.js"></script>
+    <script src="static/js/main.js"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>
+
+<!--{{url_for('static', filename='')}}-->
